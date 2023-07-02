@@ -2,7 +2,7 @@
 Particle Swarm Optimization to search for a global minimum of 2-dimensional function
 
 ## Team members
-Group|Name eng|Name rus|github
+Group|Name eng|Name rus|GitHub
 ---|---|---|---
 1384|Muhacheva Polina|Мухачёва Полина|MuhachevaPolina
 1381|Rymar Mary|Рымарь Мария|rymarmary
