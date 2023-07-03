@@ -3,7 +3,7 @@ import numpy as np
 class PlaneFunction:
     # test
     # z = Ax + By + C
-    def __init__(self, A, B, C):
+    def __init__(self, A: float, B: float, C: float) -> float:
         self.A = A
         self.B = B
         self.C = C
@@ -11,8 +11,9 @@ class PlaneFunction:
         return self.A * x + self.B * y + self.C
 
 
+
 class Particle:
-    def __init__(self, position, velocity):
+    def __init__(self, position: np.array, velocity: np.array):
         self.position = position
         self.velocity = velocity
         self.best_value = None
@@ -20,7 +21,7 @@ class Particle:
 
 
 class Swarm:
-    def __init__(self, num_of_particles, inertion, local_weight, global_weight, boundaries, function):
+    def __init__(self, num_of_particles: int, inertion: float, local_weight: float, global_weight: float, boundaries: np.array, function: PlaneFunction):
         self.function = function
         self.num_of_particles = num_of_particles
         self.inertion = inertion
@@ -30,7 +31,7 @@ class Swarm:
         self.best_global_pos = None
         self.best_global_val = None
 
-    def gen_rand_vector(self, boundaries_x, boundaries_y):
+    def gen_rand_vector(self, boundaries_x: np.array, boundaries_y: np.array) -> np.array:
         vector = np.random.rand(2)
         vector[0] = boundaries_x[0] + vector[0] * (boundaries_x[1] - boundaries_x[0])
         vector[1] = boundaries_y[0] + vector[1] * (boundaries_y[1] - boundaries_y[0])
@@ -56,7 +57,7 @@ class Swarm:
                 self.best_global_pos = start_pos.copy()
                 self.best_global_val = cur_position_value
 
-    def update_particle_state(self, index):
+    def update_particle_state(self, index: int):
         '''
         обновление значений одной частицы с индексом index
         передвижение частицы, если позволяет диапазон
@@ -81,7 +82,7 @@ class Swarm:
             self.particles[index].best_value = new_value
             self.particles[index].best_pos = self.particles[index].position.copy()
 
-    def next_iteration(self):
+    def next_iteration(self) -> np.array:
         '''
         цикл по всем частицам
         '''
