@@ -35,12 +35,11 @@ class Swarm:
         for i in range(self.num_of_particles):
             start_pos = self.gen_rand_vector(self.boundaries)
             cur_position_value = self.function(start_pos[0], start_pos[1])
-            start_vel = self.gen_rand_vector(np.ndarray([
+            start_vel = self.gen_rand_vector(np.array([
                 get_velocity_boundaries(self.boundaries[0]),
                 get_velocity_boundaries(self.boundaries[1])
             ]))
-            self.particles.append(Particle(start_pos, start_vel))
-            self.particles[-1].best_value = cur_position_value
+            self.particles.append(Particle(start_pos, start_vel, cur_position_value))
 
             if i == 0 or cur_position_value < self.best_global_val:
                 self.best_global_pos = start_pos.copy()
@@ -73,7 +72,7 @@ class Swarm:
             self.particles[index].best_value = new_value
             self.particles[index].best_pos = self.particles[index].position.copy()
 
-    def next_iteration(self) -> np.ndarray:
+    def next_iteration(self):
         """
         Цикл по всем частицам
         возвращает позицию при мин. значении и мин. значение
@@ -83,4 +82,7 @@ class Swarm:
             if self.particles[i].best_value < self.best_global_val:
                 self.best_global_val = self.particles[i].best_value
                 self.best_global_pos = self.particles[i].best_pos.copy()
-        return np.ndarray([self.best_global_pos, self.best_global_val])
+
+    def get_current_min(self) -> tuple:
+        return self.best_global_pos, self.best_global_val
+
