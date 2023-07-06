@@ -69,10 +69,10 @@ class GUI:
                                    width=7, command=self.final)
         self.final_btn.place(x=430, y=630)
 
-        self.graph_btn = tk.Button(text="function change graph", background="#B4B4B4", foreground="#232323",
+        self.plot_btn = tk.Button(text="function change plot", background="#B4B4B4", foreground="#232323",
                                    font="Roboto 13",
-                                   command=self.graph_window, width=25)
-        self.graph_btn.place(x=235, y=670)
+                                   command=self.plot_window, width=25)
+        self.plot_btn.place(x=235, y=670)
 
     def function(self, X, Y):
         if hasattr(X, '__iter__'):
@@ -155,10 +155,22 @@ class GUI:
             return
         self.proceed(1000000000, False)
 
-    def graph_window(self):
+    def plot_window(self):
         win = tk.Tk()
         win.geometry("500x400+1000+250")
         win.resizable(False, False)
+        fig = Figure()
+        canvas = FigureCanvasTkAgg(fig, master=win)  # A tk.DrawingArea.
+        ax = fig.add_subplot()
+        minimums = self.system.get_all_minimums()
+        ax.plot([i+1 for i in range(len(minimums))], [m[1] for m in minimums], c='red')
+        ax.set_xlim(1, len(minimums)+1)
+
+        toolbar = NavigationToolbar2Tk(canvas, win, pack_toolbar=False)
+        toolbar.update()
+
+        toolbar.pack(side=tk.BOTTOM, fill=tk.X)
+        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
         return win
 
     def loop(self):

@@ -12,6 +12,8 @@ class System:
         self.min_bound = min([boundaries[i][1] - boundaries[i][0] for i in range(2)])
         self.num_of_particles = num_of_particles
         self.stopped = False
+        self.minimums = []
+        self.particles_snapshots = []
 
     def proceed(self, iterations: int) -> int:
         """
@@ -20,6 +22,9 @@ class System:
         """
         for i in range(iterations):
             self._swarm.next_iteration()
+            self.minimums.append(self._swarm.get_current_min())
+            self.particles_snapshots.append(self._swarm.particles.copy())
+
             if self.stopped:
                 continue
 
@@ -32,6 +37,9 @@ class System:
                 return iterations - i
 
         return 0
+
+    def get_all_minimums(self):
+        return self.minimums
 
     def get_particles(self):
         return self._swarm.particles
