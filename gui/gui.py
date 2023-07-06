@@ -1,25 +1,34 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 # создание графического окна
-root = Tk()
+root = tk.Tk()
 # заголовок окна
 root.title('Application using Tkinter')
-# размеры окна
-root.geometry('500x510')
+# размеры окна, смещение от левого верхнего угла
+root.geometry('500x510+500+250')
 root.resizable(False, False)
 
-btn1 = Button(text="reset", background="#B4B4B4", foreground="#232323", font="Roboto 13")
-btn1.place(x=350, y=70)
+function_entry = tk.Entry(font="Roboto 13")
+function_entry.place(x=100, y=50)
 
-btn2 = Button(text="step", background="#B4B4B4", foreground="#232323", font="Roboto 13")
-btn2.place(x=270, y=350)
+reset_btn = tk.Button(text="reset", background="#B4B4B4", foreground="#232323", font="Roboto 13")
+reset_btn.place(x=350, y=40)
 
-btn3 = Button(text="final", background="#B4B4B4", foreground="#232323", font="Roboto 13")
-btn3.place(x=350, y=350)
+canvas = tk.Canvas(bg="white", height=300, width=300)
+canvas.place(x=100, y=100)
 
-btn4 = Button(text="function change graph", background="#B4B4B4", foreground="#232323", font="Roboto 13")
-btn4.place(x=165, y=400)
+step_btn = tk.Button(text="step", background="#B4B4B4", foreground="#232323", font="Roboto 13")
+step_btn.place(x=270, y=410)
+
+final_btn = tk.Button(text="final", background="#B4B4B4", foreground="#232323", font="Roboto 13")
+final_btn.place(x=350, y=410)
+
+graph_btn = tk.Button(text="function change graph", background="#B4B4B4", foreground="#232323", font="Roboto 13")
+graph_btn.place(x=165, y=450)
+
+step_entry = tk.Entry(font="Roboto 13")
+step_entry.place(x=60, y=415)
 
 # метод, вызывающий цикл обработки событий окна для взаимодействия с пользователем
 root.mainloop()
