@@ -11,8 +11,6 @@ import numpy as np
 from gui.GUI import GUI
 
 
-# np.sin(x)*np.cos(y)+1;-1,1;-1,1
-
 np.random.seed(42)
 
 gui = GUI()
