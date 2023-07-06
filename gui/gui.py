@@ -26,16 +26,20 @@ function_entry.place(x=200, y=40)
 reset_btn = tk.Button(text="reset", background="#B4B4B4", foreground="#232323", font="Roboto 13")
 reset_btn.place(x=450, y=40)
 
-inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia")
+inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia",
+                         resolution=0.1)
 inertia_scale.place(x=200, y=67)
 
-local_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Local")
+local_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Local",
+                       resolution=0.1)
 local_scale.place(x=400, y=67)
 
-global_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Global")
+global_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Global",
+                        resolution=0.1)
 global_scale.place(x=200, y=125)
 
-stop_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Stop ratio")
+stop_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Stop ratio",
+                      resolution=0.1)
 stop_scale.place(x=400, y=125)
 
 canvas = tk.Canvas(bg="white", height=400, width=400)
