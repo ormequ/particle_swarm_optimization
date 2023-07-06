@@ -18,12 +18,12 @@ class System:
         :param iterations: количество итераций.
         :return: оставшееся количество итераций после срабатывания критерия останова или 0, если не сработал
         """
-        count_stopped = 0
         for i in range(iterations):
             self._swarm.next_iteration()
             if self.stopped:
                 continue
 
+            count_stopped = 0
             for particle in self._swarm.particles:
                 if np.linalg.norm(particle.velocity) < self.min_bound * 1e-3:
                     count_stopped += 1
