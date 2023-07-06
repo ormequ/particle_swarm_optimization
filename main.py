@@ -8,6 +8,17 @@ from mpl_toolkits.mplot3d import Axes3D
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+from gui.GUI import GUI
+
+
+# np.sin(x)*np.cos(y)+1;-1,1;-1,1
+
+np.random.seed(42)
+
+gui = GUI()
+gui.loop()
+
+exit()
 
 def rastrigin(*X, **kwargs):
     print(X)
@@ -15,7 +26,6 @@ def rastrigin(*X, **kwargs):
     return A + sum([(x**2 - A * np.cos(2 * math.pi * x)) for x in X])
 
 
-np.random.seed(42)
 
 # num_of_iterations = int(input("Введите количество итераций: "))
 # num_of_particles = int(input("Введите количество частиц: "))
@@ -33,6 +43,10 @@ inertia = 0.3
 local_weight = 1.4
 global_weight = 1.5
 bounds = [-5.12, 5.12]
+
+"""
+20 + (x ** 2 - 10 * np.cos(2 * np.pi * x)) + (y ** 2 - 10 * np.cos(2 * np.pi * y));-5.12,5.12;-5.12,5.12
+"""
 
 function = Rastring(bounds, 10)
 
