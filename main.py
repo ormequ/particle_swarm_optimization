@@ -1,5 +1,6 @@
 import numpy as np
 from algorithm.Swarm import Swarm
+from algorithm.System import System
 from functions.Rasting import Rastring
 
 from matplotlib import cm
@@ -36,13 +37,9 @@ bounds = [-5.12, 5.12]
 function = Rastring(bounds, 10)
 
 boundaries = np.array([bounds, bounds])
-swarm = Swarm(num_of_particles, inertia, local_weight, global_weight, boundaries, function)
-swarm.create_particles()
-
-for i in range(num_of_iterations):
-    swarm.next_iteration()
-    cur_min = swarm.get_current_min()
-    print("Current minimum is", cur_min[1], "\tat", cur_min[0])
+system = System(function, boundaries, num_of_particles, inertia, local_weight, global_weight)
+system.proceed(num_of_iterations)
+print(system.get_min())
 
 
 X = np.linspace(-5.12, 5.12, 200)
