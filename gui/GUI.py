@@ -36,7 +36,8 @@ class GUI:
                                    command=self.reset)
         self.reset_btn.place(x=450, y=40)
 
-        self.inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia", resolution=0.05)
+        self.inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia",
+                                      resolution=0.05)
         self.inertia_scale.place(x=200, y=67)
         self.inertia_scale.set(0.75)
 
@@ -44,11 +45,13 @@ class GUI:
         self.local_scale.place(x=400, y=67)
         self.local_scale.set(2.0)
 
-        self.global_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Global", resolution=0.05)
+        self.global_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Global",
+                                     resolution=0.05)
         self.global_scale.place(x=200, y=125)
         self.global_scale.set(1.5)
 
-        self.stop_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Stop ratio", resolution=0.05)
+        self.stop_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Stop ratio",
+                                   resolution=0.05)
         self.stop_scale.place(x=400, y=125)
         self.stop_scale.set(0.75)
 
@@ -70,8 +73,8 @@ class GUI:
         self.final_btn.place(x=430, y=630)
 
         self.plot_btn = tk.Button(text="function change plot", background="#B4B4B4", foreground="#232323",
-                                   font="Roboto 13",
-                                   command=self.plot_window, width=25)
+                                  font="Roboto 13",
+                                  command=self.plot_window, width=25)
         self.plot_btn.place(x=235, y=670)
 
     def function(self, X, Y):
@@ -163,8 +166,8 @@ class GUI:
         canvas = FigureCanvasTkAgg(fig, master=win)  # A tk.DrawingArea.
         ax = fig.add_subplot()
         minimums = self.system.get_all_minimums()
-        ax.plot([i+1 for i in range(len(minimums))], [m[1] for m in minimums], c='red')
-        ax.set_xlim(1, len(minimums)+1)
+        ax.plot([i + 1 for i in range(len(minimums))], [m[1] for m in minimums], c='red')
+        ax.set_xlim(1, len(minimums) + 1)
 
         toolbar = NavigationToolbar2Tk(canvas, win, pack_toolbar=False)
         toolbar.update()

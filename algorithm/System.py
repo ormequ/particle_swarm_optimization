@@ -1,3 +1,5 @@
+from copy import copy
+
 from algorithm.Swarm import Swarm
 from typing import Callable
 import numpy as np
@@ -13,27 +15,42 @@ class System:
         self.num_of_particles = num_of_particles
         self.stopped = False
         self.minimums = []
-        self.particles_snapshots = []
+        self.snapshots = []
+
+    def restore(self, iterations: int):
+        if -iterations >= len(self.snapshots):
+            iterations = 1
+        self._swarm = copy(self.snapshots[iterations - 1])
+        self.snapshots = self.snapshots[:iterations]
+        self.minimums = self.minimums[:iterations]
+        self.check_stopped()
+
+    def check_stopped(self):
+        self.stopped = False
+        count_stopped = 0
+        for particle in self._swarm.particles:
+            if np.linalg.norm(particle.velocity) < self.min_bound * 1e-3:
+                count_stopped += 1
+        if self.num_of_particles * self.stop_ratio <= count_stopped:
+            self.stopped = True
 
     def proceed(self, iterations: int) -> int:
         """
         :param iterations: количество итераций.
         :return: оставшееся количество итераций после срабатывания критерия останова или 0, если не сработал
         """
+        if iterations < 0:
+            self.restore(iterations)
+            return 0
         for i in range(iterations):
             self._swarm.next_iteration()
             self.minimums.append(self._swarm.get_current_min())
-            self.particles_snapshots.append(self._swarm.particles.copy())
+            self.snapshots.append(copy(self._swarm))
 
             if self.stopped:
                 continue
-
-            count_stopped = 0
-            for particle in self._swarm.particles:
-                if np.linalg.norm(particle.velocity) < self.min_bound * 1e-3:
-                    count_stopped += 1
-            if self.num_of_particles * self.stop_ratio <= count_stopped:
-                self.stopped = True
+            self.check_stopped()
+            if self.stopped:
                 return iterations - i
 
         return 0
