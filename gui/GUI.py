@@ -66,11 +66,11 @@ class GUI:
 
         self.step_btn = tk.Button(text="step", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                   width=7, command=self.step)
-        self.step_btn.place(x=320, y=630)
+        self.step_btn.place(x=320, y=625)
 
         self.final_btn = tk.Button(text="final", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                    width=7, command=self.final)
-        self.final_btn.place(x=430, y=630)
+        self.final_btn.place(x=430, y=625)
 
         self.plot_btn = tk.Button(text="function change plot", background="#B4B4B4", foreground="#232323",
                                   font="Roboto 13",
