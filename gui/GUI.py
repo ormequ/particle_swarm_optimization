@@ -27,7 +27,7 @@ class GUI:
 
         self.function_label = tk.Label(text="Function", font="Roboto 13")
         self.function_label.place(x=20, y=20)
-        self.function_entry = tk.Entry(font="Roboto 13", width=30)
+        self.function_entry = tk.Entry(font="Roboto 13", width=39)
         self.function_entry.place(x=130, y=20)
 
         self.bound_x_label = tk.Label(text="X boundaries", font="Roboto 13")
