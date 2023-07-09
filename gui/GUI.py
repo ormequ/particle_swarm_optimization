@@ -38,11 +38,11 @@ class GUI:
         self.bound_xr_entry.place(x=120, y=75)
 
         self.bound_y_label = tk.Label(text="Y boundaries", font="Roboto 13")
-        self.bound_y_label.place(x=280, y=50)
+        self.bound_y_label.place(x=310, y=50)
         self.bound_yl_entry = tk.Entry(font="Roboto 13", width=8)
-        self.bound_yl_entry.place(x=280, y=75)
+        self.bound_yl_entry.place(x=310, y=75)
         self.bound_yr_entry = tk.Entry(font="Roboto 13", width=8)
-        self.bound_yr_entry.place(x=380, y=75)
+        self.bound_yr_entry.place(x=410, y=75)
 
         self.inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia",
                                       resolution=0.05)
@@ -73,21 +73,16 @@ class GUI:
         self.iterator_label = tk.Label(text="Iterator", font="Roboto 13")
         self.iterator_label.place(x=20, y=635)
 
-        self.step_entry = tk.Entry(font="Roboto 13", width=10)
+        self.step_entry = tk.Entry(font="Roboto 13", width=20)
         self.step_entry.place(x=90, y=635)
 
         self.step_btn = tk.Button(text="step", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                   width=7, command=self.step)
-        self.step_btn.place(x=230, y=630)
+        self.step_btn.place(x=310, y=630)
 
         self.final_btn = tk.Button(text="final", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                    width=7, command=self.final)
-        self.final_btn.place(x=320, y=630)
-
-        # self.plot_btn = tk.Button(text="function change plot", background="#B4B4B4", foreground="#232323",
-        #                           font="Roboto 13",
-        #                           command=self.plot_window, width=25)
-        # self.plot_btn.place(x=235, y=670)
+        self.final_btn.place(x=420, y=630)
 
     def function(self, X, Y):
         if hasattr(X, '__iter__'):
@@ -157,7 +152,6 @@ class GUI:
     def step(self):
         iterations = int(self.step_entry.get())
         self.proceed(iterations)
-        self.display_min_plot()
 
     def proceed(self, iterations, change_input=True):
         remain_iters = self.system.proceed(iterations)
@@ -170,6 +164,7 @@ class GUI:
             min_txt += ". The stop criterion has been triggered"
         self.min_label.config(text=min_txt)
         self.update_scatter()
+        self.display_min_plot()
 
     def final(self):
         if self.system.stopped:
@@ -186,7 +181,7 @@ class GUI:
 
         canvas.get_tk_widget().place(x=20, y=230, height=360, width=480)
         min_label = tk.Label(text="Changing of minimum (metric) - red", font="Roboto 13")
-        min_label.place(x=150, y=230)
+        min_label.place(x=130, y=230)
 
     def loop(self):
         self.root.mainloop()
