@@ -9,7 +9,6 @@ from matplotlib import cm
 from math import *
 
 
-# TODO refactoring
 class GUI:
     def __init__(self):
         self.main_ax = None
