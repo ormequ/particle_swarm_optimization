@@ -146,8 +146,8 @@ class GUI:
         self.canvas.get_tk_widget().place(x=540, y=20, height=640, width=700)
         fn_label = tk.Label(text="Function plot - gradient", font="Roboto 13")
         fn_label.place(x=1066, y=20)
-        point_label = tk.Label(text="Point - black dot", font="Roboto 13")
-        point_label.place(x=1118, y=60)
+        point_label = tk.Label(text="Particle - black dot", font="Roboto 13")
+        point_label.place(x=1098, y=60)
 
     def step(self):
         iterations = int(self.step_entry.get())
