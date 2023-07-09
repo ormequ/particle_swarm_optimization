@@ -23,54 +23,67 @@ class GUI:
         # заголовок окна
         self.root.title('Application using Tkinter')
         # размеры окна, смещение от левого верхнего угла
-        self.root.geometry('1280x720+100+150')
+        self.root.geometry('1280x680+100+150')
         self.root.resizable(False, False)
 
         self.function_label = tk.Label(text="Function", font="Roboto 13")
-        self.function_label.place(x=20, y=15)
+        self.function_label.place(x=20, y=20)
+        self.function_entry = tk.Entry(font="Roboto 13", width=30)
+        self.function_entry.place(x=130, y=20)
 
-        self.function_entry = tk.Entry(font="Roboto 13")
-        self.function_entry.place(x=20, y=40)
+        self.bound_x_label = tk.Label(text="X boundaries", font="Roboto 13")
+        self.bound_x_label.place(x=20, y=50)
+        self.bound_xl_entry = tk.Entry(font="Roboto 13", width=8)
+        self.bound_xl_entry.place(x=20, y=75)
+        self.bound_xr_entry = tk.Entry(font="Roboto 13", width=8)
+        self.bound_xr_entry.place(x=120, y=75)
 
-        self.reset_btn = tk.Button(text="reset", background="#B4B4B4", foreground="#232323", font="Roboto 13",
-                                   command=self.reset)
-        self.reset_btn.place(x=220, y=35)
+        self.bound_y_label = tk.Label(text="Y boundaries", font="Roboto 13")
+        self.bound_y_label.place(x=280, y=50)
+        self.bound_yl_entry = tk.Entry(font="Roboto 13", width=8)
+        self.bound_yl_entry.place(x=280, y=75)
+        self.bound_yr_entry = tk.Entry(font="Roboto 13", width=8)
+        self.bound_yr_entry.place(x=380, y=75)
 
         self.inertia_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Inertia",
                                       resolution=0.05)
-        self.inertia_scale.place(x=20, y=70)
+        self.inertia_scale.place(x=20, y=100)
         self.inertia_scale.set(0.75)
 
         self.local_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Local", resolution=0.05)
-        self.local_scale.place(x=150, y=70)
+        self.local_scale.place(x=140, y=100)
         self.local_scale.set(2.0)
 
         self.global_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=1.0, to=3.0, label="Global",
                                      resolution=0.05)
-        self.global_scale.place(x=20, y=125)
+        self.global_scale.place(x=260, y=100)
         self.global_scale.set(1.5)
 
         self.stop_scale = tk.Scale(length=100, orient=tk.HORIZONTAL, from_=0.0, to=1.0, label="Stop ratio",
                                    resolution=0.05)
-        self.stop_scale.place(x=150, y=125)
+        self.stop_scale.place(x=380, y=100)
         self.stop_scale.set(0.75)
+
+        self.reset_btn = tk.Button(text="reset", background="#B4B4B4", foreground="#232323", font="Roboto 13",
+                                   command=self.reset, width=51)
+        self.reset_btn.place(x=20, y=170)
 
         self.min_label = tk.Label(text="Start to minimize your function", font="Roboto 13")
         self.min_label.place(x=20, y=600)
 
-        self.iterator_label = tk.Label(text="iterator", font="Roboto 13")
-        self.iterator_label.place(x=20, y=630)
+        self.iterator_label = tk.Label(text="Iterator", font="Roboto 13")
+        self.iterator_label.place(x=20, y=635)
 
         self.step_entry = tk.Entry(font="Roboto 13", width=10)
-        self.step_entry.place(x=20, y=660)
+        self.step_entry.place(x=90, y=635)
 
         self.step_btn = tk.Button(text="step", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                   width=7, command=self.step)
-        self.step_btn.place(x=130, y=655)
+        self.step_btn.place(x=230, y=630)
 
         self.final_btn = tk.Button(text="final", background="#B4B4B4", foreground="#232323", font="Roboto 13",
                                    width=7, command=self.final)
-        self.final_btn.place(x=220, y=655)
+        self.final_btn.place(x=320, y=630)
 
         # self.plot_btn = tk.Button(text="function change plot", background="#B4B4B4", foreground="#232323",
         #                           font="Roboto 13",
@@ -90,9 +103,10 @@ class GUI:
             return eval(self.f)
 
     def reset(self):
-        self.f, bound_x, bound_y = self.function_entry.get().split(';')
-        bound_y = np.array(list(map(float, bound_y.split(','))))
-        bound_x = np.array(list(map(float, bound_x.split(','))))
+        self.f = self.function_entry.get()
+
+        bound_y = np.array([float(self.bound_yl_entry.get()), float(self.bound_yr_entry.get())])
+        bound_x = np.array([float(self.bound_xl_entry.get()), float(self.bound_xr_entry.get())])
 
         self.min_label.config(text="Start to minimize your function")
         inertia = float(self.inertia_scale.get())
@@ -134,8 +148,8 @@ class GUI:
         toolbar = NavigationToolbar2Tk(self.canvas, self.root, pack_toolbar=False)
         toolbar.update()
 
-        toolbar.place(x=440, y=20)
-        self.canvas.get_tk_widget().place(x=440, y=20, height=680, width=800)
+        toolbar.place(x=540, y=20)
+        self.canvas.get_tk_widget().place(x=540, y=20, height=640, width=700)
         fn_label = tk.Label(text="Function plot - gradient", font="Roboto 13")
         fn_label.place(x=1066, y=20)
         point_label = tk.Label(text="Point - black dot", font="Roboto 13")
@@ -171,9 +185,9 @@ class GUI:
         ax.plot([i + 1 for i in range(len(minimums))], [m[1] for m in minimums], c='red', label='Minimum at iteration')
         ax.set_xlim(1, len(minimums) + 1)
 
-        canvas.get_tk_widget().place(x=20, y=190, height=400, width=400)
+        canvas.get_tk_widget().place(x=20, y=230, height=360, width=480)
         min_label = tk.Label(text="Changing of minimum (metric) - red", font="Roboto 13")
-        min_label.place(x=80, y=190)
+        min_label.place(x=150, y=230)
 
     def loop(self):
         self.root.mainloop()
