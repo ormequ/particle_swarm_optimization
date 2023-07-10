@@ -1,3 +1,4 @@
+from copy import copy
 from typing import Callable
 import numpy as np
 from algorithm.Particle import Particle
@@ -86,3 +87,9 @@ class Swarm:
     def get_current_min(self) -> tuple:
         return self.best_global_pos, self.best_global_val
 
+    def __copy__(self):
+        new = Swarm(self.num_of_particles, self.inertia, self.local_weight, self.global_weight, self.boundaries.copy(), self.function)
+        new.particles = [copy(p) for p in self.particles]
+        new.best_global_pos = self.best_global_pos.copy()
+        new.best_global_val = self.best_global_val
+        return new

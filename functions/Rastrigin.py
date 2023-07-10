@@ -1,9 +1,8 @@
 import numpy as np
 
 
-class Rastring:
+class Rastrigin:
 
-    # z = Ax + By + C
     def __init__(self, boundaries, A):
         self.boundaries = boundaries
         self.A = A
