@@ -8,7 +8,15 @@ Group|Name eng|Name rus|GitHub
 1381|Rymar Mary|Рымарь Мария|rymarmary
 1384|Belokobylsky Ilya|Белокобыльский Илья|ormequ
 
-## GUI prototype:
+## Requirements
 
-![version3](https://github.com/ormequ/particle_swarm_optimization/assets/86787651/1ab1e0cf-8d93-4ec2-b42b-29e972091074)
-![2nd_ver3](https://github.com/ormequ/particle_swarm_optimization/assets/86787651/1a7851e0-7871-40f5-a794-c2df98a245eb)
+NumPy, Tkinter, Matplotlib
+
+## Screenshots
+
+The rastrigin function was used for the tests
+
+![изображение](https://github.com/ormequ/particle_swarm_optimization/assets/57725831/71527b69-00d3-40ed-9c36-fbee6b0e5501)
+
+![изображение](https://github.com/ormequ/particle_swarm_optimization/assets/57725831/eff053ee-80fd-4ab3-8ab3-a56aafe55f79)
+
